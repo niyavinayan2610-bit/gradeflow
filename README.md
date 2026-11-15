@@ -4,8 +4,8 @@ A Flask mini-project with two independent tools: six-digit OTP verification and 
 
 | Project link | Status |
 | --- | --- |
-| GitHub repository | **[FILL IN AFTER UPLOAD: GitHub repository URL]** |
-| Live website | **[FILL IN AFTER DEPLOYMENT: Render service URL]** |
+| GitHub repository | [GitHub repository](https://github.com/niyavinayan2610-bit/gradeflow) |
+| Live website | [Live website](https://gradeflow-phqb.onrender.com) |
 
 The [project report](docs/PROJECT_REPORT.md) describes the design, algorithms, tests, screenshot slots, and full publishing steps.
 

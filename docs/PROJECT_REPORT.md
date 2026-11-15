@@ -6,8 +6,8 @@
 | Prepared by | **[FILL IN: Student name and roll number]** |
 | Institution / course | **[FILL IN: Institution and course]** |
 | Submission date | **[FILL IN: Date]** |
-| GitHub repository | **[FILL IN AFTER UPLOAD: GitHub repository URL]** |
-| Live website | **[FILL IN AFTER DEPLOYMENT: Render service URL]** |
+| GitHub repository | [GitHub repository](https://github.com/niyavinayan2610-bit/gradeflow) |
+| Live website | [Live website](https://gradeflow-phqb.onrender.com) |
 
 ## 1. Abstract and aim
 
