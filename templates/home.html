@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Gradeflow · Verification and grading{% endblock %}
+{% block main %}
+<section class="hero">
+  <div class="hero-copy">
+    <h1>Verification<br>and grading.</h1>
+    <p>Try six-digit code verification or calculate a student’s academic result from subject marks.</p>
+  </div>
+  <div class="hero-preview" aria-hidden="true">
+    <div class="preview-sheet">
+      <span>Sample result</span>
+      <div class="preview-line"><strong>84.50%</strong><span>A</span></div>
+      <div class="preview-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="preview-code">0 4 8&nbsp; 2 1 6</div>
+  </div>
+</section>
+<section class="tool-grid" aria-label="Project tools">
+  <a class="tool-card" href="{{ url_for('otp_page') }}">
+    <span class="tile-icon code-icon" aria-hidden="true">#</span>
+    <span><strong>OTP verification</strong><small>Generate and verify a six-digit code.</small></span>
+    <span class="arrow" aria-hidden="true">↗</span>
+  </a>
+  <a class="tool-card" href="{{ url_for('grade_page') }}">
+    <span class="tile-icon grade-icon" aria-hidden="true">A</span>
+    <span><strong>Student grading</strong><small>Calculate total marks, average and grade.</small></span>
+    <span class="arrow" aria-hidden="true">↗</span>
+  </a>
+</section>
+{% endblock %}

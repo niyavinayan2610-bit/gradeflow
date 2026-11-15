@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Form error · Gradeflow{% endblock %}
+{% block main %}
+<div class="page-heading">
+  <h1>Form error</h1>
+  <p>{{ message }}</p>
+  <a class="button" href="{{ url_for('home') }}">Back to overview</a>
+</div>
+{% endblock %}

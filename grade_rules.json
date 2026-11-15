@@ -1,0 +1,9 @@
+[
+  {"minimum": 90, "grade": "A+"},
+  {"minimum": 80, "grade": "A"},
+  {"minimum": 70, "grade": "B"},
+  {"minimum": 60, "grade": "C"},
+  {"minimum": 50, "grade": "D"},
+  {"minimum": 0, "grade": "F"}
+]
+

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Student grading · Gradeflow{% endblock %}
+{% macro error_attr(key) -%}
+  {% if key in errors %}aria-invalid="true" aria-describedby="error-{{ key }}"{% endif %}
+{%- endmacro %}
+{% macro error_text(key) -%}
+  {% if key in errors %}<small class="field-error" id="error-{{ key }}">{{ errors[key] }}</small>{% endif %}
+{%- endmacro %}
+{% macro subject_row(index, subject='', mark='') -%}
+<div class="subject-row">
+  <div>
+    <label for="subject{{ index }}">Subject <span data-index>{{ index }}</span></label>
+    <input id="subject{{ index }}" name="subject" value="{{ subject }}" maxlength="60" placeholder="e.g. Mathematics" required {{ error_attr('subject' ~ index) }}>
+    {{ error_text('subject' ~ index) }}
+  </div>
+  <div>
+    <label for="mark{{ index }}">Mark / 100</label>
+    <input id="mark{{ index }}" name="mark" value="{{ mark }}" type="text" inputmode="decimal" maxlength="6" pattern="[0-9]{1,3}(\.[0-9]{1,2})?" title="0 to 100, with up to two decimal places" placeholder="0–100" required {{ error_attr('mark' ~ index) }}>
+    {{ error_text('mark' ~ index) }}
+  </div>
+  <button class="remove" type="button" data-remove aria-label="Remove subject {{ index }}" hidden>×</button>
+</div>
+{%- endmacro %}
+{% block main %}
+<div class="page-heading">
+  <h1>Student grading</h1>
+  <p>Enter the student’s details and marks for {{ minimum }}–{{ maximum }} equally weighted subjects.</p>
+</div>
+{% if errors %}
+<div class="notice error" role="alert" tabindex="-1" data-feedback>{{ errors.get('rows', 'Check the highlighted fields and try again.') }}</div>
+{% endif %}
+<div class="grades-layout">
+  <form class="panel" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <h2>Student details</h2>
+    <div class="identity-grid">
+      <div>
+        <label for="name">Full name</label>
+        <input id="name" name="name" value="{{ fields.name }}" maxlength="80" placeholder="e.g. Ananya Rao" required {{ error_attr('name') }}>
+        {{ error_text('name') }}
+      </div>
+      <div>
+        <label for="roll">Roll number</label>
+        <input id="roll" name="roll" value="{{ fields.roll }}" maxlength="30" placeholder="e.g. CS-024" required {{ error_attr('roll') }}>
+        {{ error_text('roll') }}
+      </div>
+    </div>
+    <fieldset>
+      <legend>Subject marks</legend>
+      <div id="subject-rows" data-minimum="{{ minimum }}" data-maximum="{{ maximum }}">
+        {% for subject, mark in rows %}{{ subject_row(loop.index, subject, mark) }}{% endfor %}
+      </div>
+      <template id="subject-template">{{ subject_row(0) }}</template>
+      <button class="secondary add" type="button" id="add-subject" hidden>+ Add subject</button>
+    </fieldset>
+    <button type="submit">Calculate result</button>
+  </form>
+  <aside class="panel scale">
+    <h2>Grade scale</h2>
+    <table>
+      <thead><tr><th scope="col">Minimum average</th><th scope="col">Grade</th></tr></thead>
+      <tbody>{% for rule in rules %}<tr><td>{{ rule.minimum }}%</td><td>{{ rule.grade }}</td></tr>{% endfor %}</tbody>
+    </table>
+    <p class="muted">The highest eligible grade applies.</p>
+  </aside>
+</div>
+{% if result %}
+<section class="panel result" aria-labelledby="result-title" tabindex="-1" data-feedback>
+  <div class="result-header">
+    <div><h2 id="result-title">Academic result</h2><p>{{ result.name }} <span class="muted">· {{ result.roll }}</span></p></div>
+    <button type="button" id="print-result" class="secondary" hidden>Print result</button>
+  </div>
+  <dl class="stats">
+    <div><dt>Total marks</dt><dd>{{ '%.2f'|format(result.total) }} <small>/ {{ result.maximum }}</small></dd></div>
+    <div><dt>Average</dt><dd>{{ '%.2f'|format(result.average) }}%</dd></div>
+    <div><dt>Grade</dt><dd>{{ result.grade }}</dd></div>
+  </dl>
+  <table>
+    <thead><tr><th scope="col">Subject</th><th scope="col">Mark / 100</th></tr></thead>
+    <tbody>{% for subject, mark in result.rows %}<tr><th scope="row">{{ subject }}</th><td>{{ '%.2f'|format(mark) }}</td></tr>{% endfor %}</tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

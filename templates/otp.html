@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}OTP verification · Gradeflow{% endblock %}
+{% block main %}
+<div class="page-heading">
+  <h1>OTP verification</h1>
+  <p>Generate a six-digit demo code, then enter it below to verify it.</p>
+</div>
+{% if message %}
+<div class="notice {{ kind }}" role="{{ 'status' if kind == 'success' else 'alert' }}" tabindex="-1" data-feedback>{{ message }}</div>
+{% endif %}
+<div class="tool-grid">
+  <section class="panel">
+    <h2>Generate a code</h2>
+    <p class="muted">The code appears here for practice. Copy it before submitting.</p>
+    {% if code %}
+      <div class="otp-display"><span class="muted">Your demo code</span><code id="demo-code">{{ code }}</code></div>
+    {% endif %}
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button class="secondary" name="action" value="generate">Generate code</button>
+    </form>
+  </section>
+  <section class="panel">
+    <h2>Verify the code</h2>
+    <p class="muted" id="otp-hint">Each code lasts 5 minutes and allows 5 guesses.</p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label for="code">Six-digit code</label>
+      <input class="otp-input" id="code" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" aria-describedby="otp-hint" placeholder="000000" required>
+      <button name="action" value="verify">Verify code</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

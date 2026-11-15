@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ef">
+  <title>{% block title %}Gradeflow{% endblock %}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="shell site-header">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">G</span>Gradeflow</a>
+    <nav aria-label="Main navigation">
+      <a href="{{ url_for('home') }}"{% if request.endpoint == 'home' %} aria-current="page"{% endif %}>Overview</a>
+      <a href="{{ url_for('otp_page') }}"{% if request.endpoint == 'otp_page' %} aria-current="page"{% endif %}>OTP demo</a>
+      <a href="{{ url_for('grade_page') }}"{% if request.endpoint == 'grade_page' %} aria-current="page"{% endif %}>Grades</a>
+    </nav>
+  </header>
+  <main class="shell" id="main">{% block main %}{% endblock %}</main>
+  <footer class="shell site-footer"><span>Gradeflow</span><span>Flask mini-project</span></footer>
+</body>
+</html>
