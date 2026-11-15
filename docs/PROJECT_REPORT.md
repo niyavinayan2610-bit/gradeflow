@@ -3,9 +3,8 @@
 | Field | Value |
 | --- | --- |
 | Project title | Gradeflow — OTP Verification and Student Grading |
-| Prepared by | **[FILL IN: Student name and roll number]** |
-| Institution / course | **[FILL IN: Institution and course]** |
-| Submission date | **[FILL IN: Date]** |
+| Prepared by | Niya Vinayan — 25BTRCL341 |
+| Institution / course | Jain Deemed-to-be University — BTech AIML |
 | GitHub repository | [GitHub repository](https://github.com/niyavinayan2610-bit/gradeflow) |
 | Live website | [Live website](https://gradeflow-phqb.onrender.com) |
 
@@ -110,22 +109,7 @@ The 13 automated tests passed locally with Python 3.14.3, Flask 3.1.3, and a tem
 
 After deployment, open the site on desktop and mobile. Complete both workflows, add and remove subject rows, and open the print preview for a result. Open `/healthz` on the live service and check that it returns an OK status.
 
-## 6. Screenshot placeholders
-
-Capture the running app using sample student details, save the images in `docs/screenshots/`, and replace each placeholder with the matching Markdown image.
-
-| Figure | Screenshot placeholder | Suggested file |
-| --- | --- | --- |
-| 1 | **[INSERT: Overview page showing both tools]** | `screenshots/01-overview.png` |
-| 2 | **[INSERT: OTP page immediately after issuing a sample code]** | `screenshots/02-otp-generated.png` |
-| 3 | **[INSERT: OTP verification success message]** | `screenshots/03-otp-verified.png` |
-| 4 | **[INSERT: Student details and subject marks form]** | `screenshots/04-grade-form.png` |
-| 5 | **[INSERT: Academic result showing totals, average and grade]** | `screenshots/05-academic-result.png` |
-| 6 | **[INSERT: Mobile layout for either tool]** | `screenshots/06-mobile.png` |
-
-For example, replace a placeholder with `![Gradeflow overview](screenshots/01-overview.png)`.
-
-## 7. Publishing to GitHub
+## 6. Publishing to GitHub
 
 1. Extract the ZIP. In a terminal, open the inner `gradeflow` folder that contains `app.py`.
 2. Sign in to GitHub. Create an empty repository, for example `gradeflow`. Choose repository visibility appropriate for your submission. Leave GitHub’s initialization options unchecked because the project includes its own README and ignore file.
@@ -144,7 +128,7 @@ git push -u origin main
 
 If Git asks for commit identity, set `git config user.name "Your Name"` and `git config user.email "Your GitHub commit email"` from inside the project, then retry the commit. [GitHub guide to uploading local code](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
 
-## 8. Deploying on Render
+## 7. Deploying on Render
 
 ### Blueprint setup
 
@@ -167,7 +151,7 @@ Select **New → Web Service**, connect the same GitHub repository, and choose t
 
 For the manual setup, generate a secret locally using `python -c "import secrets; print(secrets.token_hex(32))"` and enter it in the Render Environment panel. Keep the value out of GitHub and the report. If the service fails to start, check the build and runtime logs, then confirm the commands, root directory, and environment settings. [Render Flask deployment](https://render.com/docs/deploy-flask) · [Blueprint reference](https://render.com/docs/blueprint-spec) · [Free service behavior](https://render.com/docs/free)
 
-## 9. Conclusion
+## 8. Conclusion
 
 Gradeflow implements both original Python exercises through validated web forms. The OTP flow demonstrates code generation, expiry, and single use, while the grade calculator demonstrates configurable academic rules and a structured, printable result.
 
